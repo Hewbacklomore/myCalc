@@ -3,58 +3,62 @@
 const allBtns = document.querySelector('.calc__buttons'),
       calcBtn = document.querySelector('.calc__btns'),
       everyBtn = document.querySelectorAll('.calc__btn'),
-      calcFirstBox = document.querySelectorAll('.calc__firstbox'),
+      calcFirstBox = document.querySelector('.calc__firstbox'),
       calcInput = document.querySelector('input[type="text"]');
 
 window.addEventListener('DOMContentLoaded', function() {
-
-    allBtns.addEventListener('click', (e) => {
+    
+    calcFirstBox.addEventListener('click', (e) => {
 
        
-            
-            
-            if(e.target.className === 'calc__btn') {
-                
-                        calcInput.innerHTML = '<button class="calc__btns">click!</button>'
-              
-             }
 
-
+       
         
+   
+           
+            everyBtn.forEach(function(item) {
+                let everyItemNum = item.textContent;
+
+                let objNumbers = {
+                    zero: everyItemNum,
+                    firs: everyItemNum
+                }
+
+                function sum(a) {
+                    console.log(a);
+                }
+                
+                
+                 if(e.target === item) {
+                    calcInput.value = everyItemNum
+                    
+                    const newFun = sum.bind(objNumbers, everyItemNum);
+                    newFun()
+                } 
+            })
+            
+            
+            
+
+            
+        
+
         
     })
     
-    calcBtn.addEventListener('click', (e) => {
-        if(e.target.className === 'calc__btns') {
-                 
-        calcInput.addEventListener('input', (e) => {
-            let myInput = Number(calcInput.value);
-            minus(myInput);
 
 
-    })
-        }
-   
-     })
-
-
-
-
-
-    function btnInput() {
-        everyBtn.forEach((item) => {
-            console.log(item);
-     })
-    }
-
-    function minus(num) {
-        const newEl = document.createElement('div');
-        newEl.innerHTML = `<div>${num + num}</div>`;
-        newEl.style.backgroundColor = 'white';
-        newEl.style.fontSize = '30px';
-        newEl.style.color = 'red'
-        calcInput.prepend(newEl);
-    }
-
+/* 
+    calcBtn.addEventListener('click', function(e) {
+        console.log(e.target);
+        const inputBox = calcInput.value;
+                console.log(inputBox);
+    }) */
+    
+   /*  
+    calcInput.addEventListener('input' , function() {
+        const inputBox = calcInput.value;
+        console.log(typeof inputBox);
+}) */
 
 })
